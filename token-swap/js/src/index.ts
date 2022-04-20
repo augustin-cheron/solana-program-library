@@ -27,7 +27,7 @@ export class Numberu64 extends BN {
    * Convert to Buffer representation
    */
   toBuffer(): Buffer {
-    const a = super.toArray().reverse();
+    const a = super.toArray('le').reverse();
     const b = Buffer.from(a);
     if (b.length === 8) {
       return b;
@@ -50,6 +50,7 @@ export class Numberu64 extends BN {
         .map(i => `00${i.toString(16)}`.slice(-2))
         .join(''),
       16,
+      'le'
     );
   }
 }
